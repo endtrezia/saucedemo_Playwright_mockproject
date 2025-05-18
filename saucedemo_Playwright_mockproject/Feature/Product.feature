@@ -3,7 +3,7 @@
 Product features including the product listing, sorting functionality, and product details page.
 
   Scenario: Verify all products are listed with correct names, images, and prices
-    Given User logged in as a standard_user
+    Given User logged in as a "standard_user" and "secret_sauce"
     When User view the product list
     Then User should see all products with correct names, images, and prices
 

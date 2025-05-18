@@ -121,7 +121,7 @@ namespace saucedemo_Playwright_mockproject.Feature
             {
                 await this.ScenarioStartAsync();
 #line 6
-    await testRunner.GivenAsync("User logged in as a standard_user", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("User logged in as a \"standard_user\" and \"secret_sauce\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 7
     await testRunner.WhenAsync("User view the product list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");

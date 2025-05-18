@@ -44,12 +44,13 @@
 
   <ItemGroup>
     <Folder Include="Log\" />
-    <Folder Include="Resources\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\ProductData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
