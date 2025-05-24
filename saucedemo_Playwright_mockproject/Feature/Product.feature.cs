@@ -104,12 +104,12 @@ namespace saucedemo_Playwright_mockproject.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify all products are listed with correct names, images, and prices")]
-        public async global::System.Threading.Tasks.Task VerifyAllProductsAreListedWithCorrectNamesImagesAndPrices()
+        [NUnit.Framework.DescriptionAttribute("Verify all products are listed with correct names, description, and prices")]
+        public async global::System.Threading.Tasks.Task VerifyAllProductsAreListedWithCorrectNamesDescriptionAndPrices()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify all products are listed with correct names, images, and prices", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify all products are listed with correct names, description, and prices", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -127,7 +127,7 @@ namespace saucedemo_Playwright_mockproject.Feature
     await testRunner.WhenAsync("User view the product list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 8
-    await testRunner.ThenAsync("User should see all products with correct names, images, and prices", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.ThenAsync("User should see all products with correct names, description, and prices", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -151,7 +151,7 @@ namespace saucedemo_Playwright_mockproject.Feature
             {
                 await this.ScenarioStartAsync();
 #line 11
-    await testRunner.GivenAsync("User am logged in as a standard user", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("User logged in as a \"standard_user\" and \"secret_sauce\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 12
     await testRunner.WhenAsync("User sort products by \"Price (low to high)\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
@@ -177,10 +177,16 @@ namespace saucedemo_Playwright_mockproject.Feature
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify product details page opens correctly")]
-        public async global::System.Threading.Tasks.Task VerifyProductDetailsPageOpensCorrectly()
+        [NUnit.Framework.TestCaseAttribute("Sauce Labs Backpack", null)]
+        [NUnit.Framework.TestCaseAttribute("Sauce Labs Bike Light", null)]
+        [NUnit.Framework.TestCaseAttribute("Sauce Labs Bolt T-Shirt", null)]
+        [NUnit.Framework.TestCaseAttribute("Sauce Labs Fleece Jacket", null)]
+        [NUnit.Framework.TestCaseAttribute("Sauce Labs Onesie", null)]
+        public async global::System.Threading.Tasks.Task VerifyProductDetailsPageOpensCorrectly(string product, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("product", product);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify product details page opens correctly", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 19
   this.ScenarioInitialize(scenarioInfo);
@@ -193,10 +199,10 @@ namespace saucedemo_Playwright_mockproject.Feature
             {
                 await this.ScenarioStartAsync();
 #line 20
-    await testRunner.GivenAsync("User am logged in as a standard user", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("User logged in as a \"standard_user\" and \"secret_sauce\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 21
-    await testRunner.WhenAsync("User click on the first product", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync(string.Format("User click on the {0}", product), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 22
     await testRunner.ThenAsync("The product details page should display the correct product information", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");

@@ -18,15 +18,14 @@ namespace saucedemo_Playwright_mockproject.Pages
         private ILocator _btnLogin() => _page.Locator("#login-button");
         private ILocator _errMessage() => _page.Locator("[data-test='error']");
         private ILocator _errCloseButton() => _page.Locator("[data-test='error-button']");
-        
-
-
         //Init the Actions
         public async Task ClickButtonLoginAsync() => await _btnLogin().ClickAsync();
         public async Task FillUsernameAsync(string username) => await _txtUsername().FillAsync(username);
         public async Task FillPasswordAsync(string password) => await _txtPassword().FillAsync(password);
         public async Task<string> GetErrorMessageAsync() => await _errMessage().IsVisibleAsync() ? await _errMessage().InnerTextAsync() : string.Empty; //If not visible, return empty string
         public async Task<bool> isErrorMessageVisibleAsync() => await _errMessage().IsVisibleAsync();
+
+        //Created this method to close the error message if it visible, but not necessary to use it in the test cases.
         public async Task CloseErrorMessageAsync() 
         {
             if (await _errCloseButton().IsVisibleAsync())

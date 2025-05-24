@@ -8,8 +8,10 @@ namespace saucedemo_Playwright_mockproject.Enums
 {
     public static class ErrorMessage
     {
+        //Error messages enums for login page
         public static readonly string LockedOutUser = "Sorry, this user has been locked out.";
         public static readonly string InvalidUser = "Username and password do not match any user in this service";
+
 
         public static string Get(string errorType)
         {
