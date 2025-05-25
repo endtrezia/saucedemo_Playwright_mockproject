@@ -26,6 +26,7 @@ Ensure you have the following installed:
 
 ## Setup Instructions
 **1. Clone this Repository**
+
 **2. Restore NuGet Packages**
 ```bash
    dotnet restore
