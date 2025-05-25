@@ -7,13 +7,13 @@ using System.ComponentModel;
 namespace saucedemo_Playwright_mockproject.Hooks
 {
     [Binding]
-    public class SimpleHook
+    public class InitDriverHook
     {
         private SimpleDriver? _driver;
         private IConfiguration? _configuration;
         IObjectContainer _container;
 
-        public SimpleHook(IObjectContainer container)
+        public InitDriverHook(IObjectContainer container)
         {
             _container = container;
         }
