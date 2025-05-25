@@ -14,6 +14,10 @@ namespace saucedemo_Playwright_mockproject.Enums
         public static readonly ValidatorMessage InventoryMissing = new("There is missing data record {0}");
         public static readonly ValidatorMessage WrongSortOrder = new("Wrong sort order");
         public static readonly ValidatorMessage WrongProductDetail = new("Wrong product {0} detail");
+        public static readonly ValidatorMessage CartIsNotEmpty = new("Cart is not empty");
+        public static readonly ValidatorMessage CartIsEmpty = new("Cart is empty");
+        public static readonly ValidatorMessage ProductNotFoundInOverview = new("Product {0} is not in the overview cart");
+        public static readonly ValidatorMessage SubtotalValueNotCorrect = new("Subtotal value is not correct");
 
         private readonly string _template;
 

@@ -15,6 +15,6 @@ Background:
     And User enters payment information:
       | firstName | lastName | postalCode |
       | Zia      | Nguyen      | H5202      |
-    And User continues payment
-    And User finishes payment
+	And User continues and review their order checkout page
+	And User finishes the payment process
     Then The payment should be completed successfully

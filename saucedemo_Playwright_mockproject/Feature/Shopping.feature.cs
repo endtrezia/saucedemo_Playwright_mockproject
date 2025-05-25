@@ -18,16 +18,16 @@ namespace saucedemo_Playwright_mockproject.Feature
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Shopping")]
+    [NUnit.Framework.DescriptionAttribute("Shopping and Payment")]
     [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class ShoppingFeature
+    public partial class ShoppingAndPaymentFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Feature", "Shopping", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Feature", "Shopping and Payment", "Add Product to Cart and perform payment", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "Shopping.feature"
 #line hidden
@@ -102,17 +102,24 @@ namespace saucedemo_Playwright_mockproject.Feature
             await testRunner.CollectScenarioErrorsAsync();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("[scenario name]")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
-        public async global::System.Threading.Tasks.Task ScenarioName()
+        public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("[scenario name]", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
+#line hidden
 #line 6
-this.ScenarioInitialize(scenarioInfo);
+    await testRunner.GivenAsync("User logged in as a \"standard_user\" and \"secret_sauce\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add some product to cart and payment successfully")]
+        public async global::System.Threading.Tasks.Task AddSomeProductToCartAndPaymentSuccessfully()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add some product to cart and payment successfully", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
+  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -121,14 +128,42 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
- await testRunner.GivenAsync("[context]", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line 5
+await this.FeatureBackgroundAsync();
 #line hidden
-#line 8
- await testRunner.WhenAsync("[action]", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                            "product"});
+                table1.AddRow(new string[] {
+                            "Sauce Labs Fleece Jacket"});
+                table1.AddRow(new string[] {
+                            "Sauce Labs Bolt T-Shirt"});
+                table1.AddRow(new string[] {
+                            "Sauce Labs Backpack"});
 #line 9
- await testRunner.ThenAsync("[outcome]", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.WhenAsync("User adds the following products to the cart:", ((string)(null)), table1, "When ");
+#line hidden
+#line 14
+    await testRunner.AndAsync("User proceeds to payment steps", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
+                            "firstName",
+                            "lastName",
+                            "postalCode"});
+                table2.AddRow(new string[] {
+                            "Zia",
+                            "Nguyen",
+                            "H5202"});
+#line 15
+    await testRunner.AndAsync("User enters payment information:", ((string)(null)), table2, "And ");
+#line hidden
+#line 18
+ await testRunner.AndAsync("User continues and review their order checkout page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 19
+ await testRunner.AndAsync("User finishes the payment process", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 20
+    await testRunner.ThenAsync("The payment should be completed successfully", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

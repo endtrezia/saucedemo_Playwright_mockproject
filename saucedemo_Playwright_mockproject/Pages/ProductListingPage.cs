@@ -15,15 +15,17 @@ namespace saucedemo_Playwright_mockproject.Pages
         private ILocator _inventoryList() => _page.Locator(".inventory_list");
         private ILocator _inventoryItems() => _page.Locator(".inventory_item");
         private ILocator _sortMenu() => _page.Locator("select.product_sort_container");
-        private ILocator _sortMenuOptions() => _sortMenu().Locator("option");
-        //unused locators, but can be used in the future if needed
+        private ILocator _cartIcon() => _page.Locator(".shopping_cart_link");
+        private ILocator _cartBadge() => _page.Locator(".shopping_cart_badge");
         private ILocator _inventoryItemsName() => _page.Locator(".inventory_item_name");
         private ILocator _inventoryItemsPrice() => _page.Locator(".inventory_item_price");
         private ILocator _inventoryItemsDescription() => _page.Locator(".inventory_item_desc");
         //Init the Actions
         public async Task<bool> IsPageTitleVisibleAsync() => await _pageTitle().IsVisibleAsync();
         public async Task<bool> IsInventoryListVisibleAsync() => await _inventoryList().IsVisibleAsync();
+        public async Task<bool> IsCartBadegeHiddenAsync() => await _cartBadge().IsHiddenAsync();
         public async Task SortMenuClickAsync() => await _sortMenu().ClickAsync();
+        public async Task CartIconClickAsync() => await _cartIcon().ClickAsync();
         public async Task<bool> IsPageTitleCorrectAsync(string expectedTitle)
         {
             var actualTitle = await _pageTitle().InnerTextAsync();
@@ -39,8 +41,6 @@ namespace saucedemo_Playwright_mockproject.Pages
             var inventoryItems = new List<object>();
             for ( int i = 0; i < await _inventoryItems().CountAsync(); i++)
             {
-                //Get the nth inventory item
-                var item = _inventoryItems().Nth(i);
                 //Get the item name, price and description from the inventory items
                 string itemName = await _inventoryItemsName().Nth(i).InnerTextAsync();
                 string itemPriceText = await _inventoryItemsPrice().Nth(i).InnerTextAsync();
@@ -69,11 +69,7 @@ namespace saucedemo_Playwright_mockproject.Pages
             // Go back 3 layer in DOM to get the Parrent
             var parrentLocator = GetAncestorLocator(productNameLocator, 3); 
             // Narrow down again
-            var addToCartButton = parrentLocator.Filter(new() { Has = _page.Locator("button.btn.btn_primary")});
-            if(!await addToCartButton.IsVisibleAsync())
-            {
-                return;
-            }
+            var addToCartButton = parrentLocator.Locator(_page.Locator("button.btn.btn_primary"));
             await addToCartButton.ClickAsync();
         }
         public async Task ClickProductNameAsync(string productName)

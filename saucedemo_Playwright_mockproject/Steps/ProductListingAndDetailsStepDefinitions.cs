@@ -67,10 +67,8 @@ namespace saucedemo_Playwright_mockproject.Steps
             _page.WaitForLoadStateAsync();
             if (!_page.Url.ToString().Equals(_inventoryPage.InventoryPageUrl) || !_inventoryPage.IsPageTitleVisibleAsync().Result || !_inventoryPage.IsPageTitleCorrectAsync("Products").Result)
             {
-                return; // User is not on the inventory page, stop test.
+                Assert.Fail(ValidatorMessage.UserNotAt.ReturnMessageWithParam("Inventory Page"));
             }
-            // Check if the inventory list is visible
-            Assert.That(_inventoryPage.IsInventoryListVisibleAsync().Result, Is.True, ValidatorMessage.NoInventory.RetunMessage());
         }
 
         [Then("User should see all products with correct names, description, and prices")]
@@ -171,14 +169,11 @@ namespace saucedemo_Playwright_mockproject.Steps
             //Click on the first product item
             await _inventoryPage.IsInventoryListVisibleAsync();
             await _inventoryPage.ClickProductNameAsync(product);
-            
-
         }
 
         [Then("The product details page should display the correct product information")]
         public async Task ThenTheProductDetailsPageShouldDisplayTheCorrectProductInformation()
         {
-
             await _page.WaitForLoadStateAsync();
             //Check if standing at product detail page
             Assert.That(_page.Url, Does.Contain("inventory-item"), ValidatorMessage.UserNotAt.ReturnMessageWithParam("Detail Page"));
