@@ -35,6 +35,10 @@ Ensure you have the following installed:
 ```bash
    playwright install
    ```
+If above command return error, run the below first
+```bash
+   dotnet tool install --global Microsoft.Playwright.CLI
+   ```
 **4. Build**
 ```bash
    dotnet build
